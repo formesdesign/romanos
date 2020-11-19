@@ -69,5 +69,64 @@ def romano_a_entero(romano):
 
     #overflowerror: massa quantitat desvordament         
 
+"""
+def descomponer(numero):
+
+    l = []
+    for pot in (1000, 100,10): #son les 3 podentcies xq no cal les unitats 1987. EL POT ES POTENCIA
+        l.append(numero // pot) # [1,9,8]
+        numero = numero % pot  # 87%10=7
+
+    l.append(numero)
+    return l
+
+"""
+
+def descomponer(numero):
+    l = []
+    for d in str(numero):  #d es igual a cada digito
+        l.append(int(d))
+    return l
+
+    #return [int(d) for d in str(numero)] es lo mateix que la part de dalt però simplificat
+    # es una compressió de listas 
+
+lista_millares =("M",)
+lista_centenas = ("C", "D", "M")
+lista_decenas = ("X", "L", "C")
+lista_unidades = ("I", "V", "X")
+
+lista_ordenes = [lista_unidades, lista_decenas, lista_centenas, lista_millares]
 
 
+def convertir(ordenes_magnitud):  # 1.9.8.7
+    contador = 0
+    resultado = []
+    for orden in orden_magnitud[::-1]: # estos simbolos entre corchetes es per recorrer la llista del rebes
+        resultado.append(procesar_simbolos (orden_magnitud, lista_ordenes[contador]))
+        contador += 1
+
+    return "".join(reversed(resultado)) #join es una funcion de las cadenas el contenido de la lista i intercala
+
+
+def procesar_simbolos(s, clave):
+    if s == 9:
+        return clave[0] + clave[2]
+    elif s >= 5:
+        return clave[1] + clave[0]*(s-5)
+    elif s == 4:
+        return clave[0] + clave[1]
+    else:
+        return clave[0]*s
+
+
+def entero_a_romano(numero):
+    if not isinstance(numero, int):
+        raise SyntaxError(f"{numero} no és número natural")
+
+    if numero < 1 or numero > 3999:
+        raise OverflowError(f"{numero} ha de estar entre 1 i 3999")
+
+    orden_magnitud = descomponer(numero)
+    romano = convertir(orden_magnitud)
+    return romano
