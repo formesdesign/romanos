@@ -70,6 +70,7 @@ def romano_a_entero(romano):
     #overflowerror: massa quantitat desvordament         
 
 """
+estaopcié es aplicant potàcines i divisions
 def descomponer(numero):
 
     l = []
@@ -102,8 +103,8 @@ lista_ordenes = [lista_unidades, lista_decenas, lista_centenas, lista_millares]
 def convertir(ordenes_magnitud):  # 1.9.8.7
     contador = 0
     resultado = []
-    for orden in orden_magnitud[::-1]: # estos simbolos entre corchetes es per recorrer la llista del rebes
-        resultado.append(procesar_simbolos (orden_magnitud, lista_ordenes[contador]))
+    for orden in ordenes_magnitud[::-1]: # estos simbolos entre corchetes es per recorrer la llista del rebes
+        resultado.append(procesar_simbolos (orden, lista_ordenes[contador]))
         contador += 1
 
     return "".join(reversed(resultado)) #join es una funcion de las cadenas el contenido de la lista i intercala
@@ -127,6 +128,6 @@ def entero_a_romano(numero):
     if numero < 1 or numero > 3999:
         raise OverflowError(f"{numero} ha de estar entre 1 i 3999")
 
-    orden_magnitud = descomponer(numero)
-    romano = convertir(orden_magnitud)
+    ordenes_magnitud = descomponer(numero)
+    romano = convertir(ordenes_magnitud)
     return romano
